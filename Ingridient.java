@@ -22,7 +22,7 @@ public class Ingridient {
   public String toString() {
 
       String total = "";
-      total = ("Ингредиент: " + this.ingridientText + "Сколька: " + this.quantityIngridient + " " + this.quantityType + total);
+      total = ("Ингредиент: " + this.ingridientText + " Сколька: " + this.quantityIngridient + " " + this.quantityType + total);
       return total;
   }
 

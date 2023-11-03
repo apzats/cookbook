@@ -1,6 +1,7 @@
 package cookbook_application;
 
 import java.lang.reflect.Array;
+import java.util.Scanner;
 
 public class Cookbook {
 
@@ -22,12 +23,10 @@ public class Cookbook {
     // outcome = ("Рецепт: " + outcome + "\n");
     return outcome;
   }
-  
-  public Recipe[] getArrRecipe() { 
-      return this.Recipes;
-    }  
-  
-    
+
+  public Recipe[] getArrRecipe() {
+    return this.Recipes;
+  }
 
   public void addRecipe(Recipe newItem) {
     this.Recipes = Utils.<Recipe>append(this.Recipes, newItem);
@@ -42,4 +41,26 @@ public class Cookbook {
     }
   }
 
+  public static Recipe[] searchRecipes(String substring) {
+    Cookbook newBook = new Cookbook();
+    if (book.hasRecipes() == false) {
+      System.out.println("В книге пока нет рецептов");
+    } else {
+      //System.out.println("Введи слово для поиска: ");
+      //String substring = userInput.next();
+      Recipe[] arrSearch = book.getArrRecipe();
+      for (Recipe item : arrSearch) {
+        boolean result = item.containsString(substring);
+        if (result == true) {
+          newBook.Recipes = Utils.append(arrSearch, item);
+          return newBook.Recipes;
+        } else {
+          continue;
+        }
+        System.out.println("Такого рецепта тю-тю!");
+      }
+
+    }
+
+  }
 }

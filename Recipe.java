@@ -35,7 +35,7 @@ public class Recipe {
   }
 
     public void addIngridients(Ingridient item) {
-        this.Ingridients = Utils.append(this.Ingridients, item);
+        this.Ingridients = Utils.append(this.Ingridients, item); 
     }
 
     public boolean containsString(String text) {
