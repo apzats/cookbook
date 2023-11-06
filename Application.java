@@ -17,7 +17,7 @@ public class Application {
         Cookbook testBook = makeTestBook(book);
         // System.out.println(recipeUnit.toString());
 
-        menuSearchRecipes();
+        System.out.println(menuSearchRecipes(userInput, book));
 
     }
 
@@ -70,11 +70,11 @@ public class Application {
         } else {
             System.out.println("Введи слово для поиска: ");
             String substring = userInput.next();
-            book.searchRecipes(substring);
-            if (book.checkResult() == false) {
+            Recipe[] foundRecipes = book.searchRecipes(substring);
+            if (checkResult(foundRecipes) == false) {
                 System.out.println("Такого рецепта тютю");
             } else {
-                System.out.println(book.getRec());
+                System.out.println(book.getRec(foundRecipes));
             }
 
         }
@@ -82,7 +82,7 @@ public class Application {
     }
 
     public boolean checkResult() {
-        if (searchRecipes().length == 0) {
+        if (book.searchRecipes().length == 0) {
             return false;
         } else {
             return true;
@@ -145,7 +145,7 @@ public class Application {
      * getAllRecs(book);
      * break;
      * case 3:
-     * searchRecipe(userInput, book);
+     * menuSearchRecipes(userInput, book);
      * break;
      * default:
      * System.out.println("Введено неверное значение меню.\n");
