@@ -11,16 +11,13 @@ public class Cookbook {
     Recipes = new Recipe[0];
   }
 
-  public String getRec() {
-
+  public String getRec(Recipe[] Recipes) {
     int i = 1;
     String outcome = "";
     for (Recipe item : this.Recipes) {
       outcome = outcome + "Рецепт #" + i + " " + item;
       i++;
     }
-
-    // outcome = ("Рецепт: " + outcome + "\n");
     return outcome;
   }
 
@@ -29,7 +26,7 @@ public class Cookbook {
   }
 
   public void addRecipe(Recipe newItem) {
-    this.Recipes = Utils.<Recipe>append(this.Recipes, newItem);
+    this.Recipes = Utils.<Recipe>append(this.Recipes, newItem);;
   }
 
   public boolean hasRecipes() {
@@ -41,26 +38,16 @@ public class Cookbook {
     }
   }
 
-  public static Recipe[] searchRecipes(String substring) {
+  public Recipe[] searchRecipes(String substring) {
+    Recipe[] arrSearch = this.getArrRecipe();
     Cookbook newBook = new Cookbook();
-    if (book.hasRecipes() == false) {
-      System.out.println("В книге пока нет рецептов");
-    } else {
-      //System.out.println("Введи слово для поиска: ");
-      //String substring = userInput.next();
-      Recipe[] arrSearch = book.getArrRecipe();
-      for (Recipe item : arrSearch) {
-        boolean result = item.containsString(substring);
-        if (result == true) {
-          newBook.Recipes = Utils.append(arrSearch, item);
-          return newBook.Recipes;
-        } else {
-          continue;
-        }
-        System.out.println("Такого рецепта тю-тю!");
+    for (Recipe item : arrSearch) {
+      boolean result = item.containsString(substring);
+      if (result == true) {
+        newBook.addRecipe(item);
       }
-
     }
+    return newBook.Recipes;
 
   }
 }

@@ -45,7 +45,7 @@ public class Recipe {
     }
 
     //todo: the logic is broken, you iterate over ingridients yet the message displays it being "recipes"
-    // the method was corrected(i made it smaller), but i dont understand why the logic is broken: Ingredients is an array of obj Ingredient type. Some set of ingredients in an array its a recipe, as I know.  
+   
     public String getRecipeItem() {
       String result = "";
       for (Ingridient item : this.Ingridients) {

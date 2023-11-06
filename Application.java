@@ -12,12 +12,13 @@ public class Application {
      */
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
-        Recipe recipeUnit = testRecipe(userInput);
-        System.out.println(recipeUnit.toString());
+        // Recipe recipeUnit = testRecipe(userInput);
+        Cookbook book = new Cookbook();
+        Cookbook testBook = makeTestBook(book);
+        // System.out.println(recipeUnit.toString());
 
-        System.out.println("Введи слово для поиска: ");
-        String substring = userInput.next();
-        //System.out.println(getRec(searchRecipes(substring)));
+        menuSearchRecipes();
+
     }
 
     public static Recipe testRecipe(Scanner userInput) {
@@ -61,6 +62,53 @@ public class Application {
             rec1.addIngridients(item);
         }
         return rec1;
+    }
+
+    public static String menuSearchRecipes(Scanner userInput, Cookbook book) {
+        if (book.hasRecipes() == false) {
+            System.out.println("В книге пока нет рецептов");
+        } else {
+            System.out.println("Введи слово для поиска: ");
+            String substring = userInput.next();
+            book.searchRecipes(substring);
+            if (book.checkResult() == false) {
+                System.out.println("Такого рецепта тютю");
+            } else {
+                System.out.println(book.getRec());
+            }
+
+        }
+
+    }
+
+    public boolean checkResult() {
+        if (searchRecipes().length == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static Cookbook makeTestBook(Cookbook book) {
+
+        Recipe rec = new Recipe();
+        rec.setName("pyureshka s kotletkoi");
+
+        Ingridient[] ings = new Ingridient[] {
+                new Ingridient("kartoshka", 3, "sht"),
+                new Ingridient("moloko", 100, "ml"),
+                new Ingridient("kotletka", 2, "sht"),
+        };
+
+        int idx = 0;
+        for (Ingridient item : ings) {
+            rec.addIngridients(ings[idx]);
+            idx++;
+        }
+
+        book.addRecipe(rec);
+
+        return book;
     }
 
     /**
@@ -109,16 +157,7 @@ public class Application {
      */
 
     /*
-     * todo: ponder on usefulness of this method
-     * public static void showRecipe(Recipe recipeUnit) {
-     * if (recipeUnit.hasIngridient() == false) {
-     * System.out.println("В рецепте пока нет ингредиентов");
-     * } else {
-     * System.out.println(recipeUnit.getRecipeItem());
-     * }
-     * }
-     */
-
+     
     /*
      * public static Recipe makeRecipe(Scanner userInput) {
      * Recipe rec1 = new Recipe();
@@ -205,28 +244,6 @@ public class Application {
      * book.addRecipe(recipeItem);
      * }
      * 
-     * }
-     */
-
-    /*
-     * public static String searchRecipes(Scanner userInput, Cookbook book) {
-     * Cookbook newBook = new Cookbook();
-     * if (book.hasRecipes() == false) {
-     * System.out.println("В книге пока нет рецептов");
-     * } else {
-     * System.out.println("Введи слово для поиска: ");
-     * String substring = userInput.next();
-     * return substring;
-     * /*Recipe[] arrSearch = book.getArrRecipe();
-     * for (Recipe item : arrSearch) {
-     * boolean result = item.containsString(substring);
-     * if (result == true) {
-     * newBook.Recipes = Utils.append(arrSearch, item);
-     * System.out.println(newBook.getRec());
-     * } else {
-     * continue;
-     * }
-     * System.out.println("Такого рецепта тю-тю!");
      * }
      */
 
