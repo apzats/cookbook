@@ -5,17 +5,18 @@ import java.util.Scanner;
 
 public class Cookbook {
 
-  Recipe[] Recipes;
+  private Recipe[] Recipes;
 
   public Cookbook() {
     Recipes = new Recipe[0];
   }
 
-  public String getRec(Recipe[] Recipes) {
+  public String getTextRecipes() {
     int i = 1;
     String outcome = "";
+    //todo: Если рецептов в Книге нет, нужно сразу вернуть строчку "В книге нет рецептов"
     for (Recipe item : this.Recipes) {
-      outcome = outcome + "Рецепт #" + i + " " + item;
+      outcome = outcome + "Рецепт #" + i + " " + item + "\n";
       i++;
     }
     return outcome;
@@ -26,7 +27,7 @@ public class Cookbook {
   }
 
   public void addRecipe(Recipe newItem) {
-    this.Recipes = Utils.<Recipe>append(this.Recipes, newItem);;
+    this.Recipes = Utils.<Recipe>append(this.Recipes, newItem);
   }
 
   public boolean hasRecipes() {
@@ -38,16 +39,16 @@ public class Cookbook {
     }
   }
 
-  public Recipe[] searchRecipes(String substring) {
+  public Cookbook searchRecipes(String substring) {
     Recipe[] arrSearch = this.getArrRecipe();
     Cookbook newBook = new Cookbook();
+
     for (Recipe item : arrSearch) {
       boolean result = item.containsString(substring);
       if (result == true) {
         newBook.addRecipe(item);
       }
     }
-    return newBook.Recipes;
-
+    return newBook;
   }
 }

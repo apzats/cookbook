@@ -13,15 +13,16 @@ public class Application {
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
         // Recipe recipeUnit = testRecipe(userInput);
-        Cookbook book = new Cookbook();
-        Cookbook testBook = makeTestBook(book);
+        Cookbook testBook = makeTestBook();
         // System.out.println(recipeUnit.toString());
 
-        menuSearchRecipes();
+        //todo: окей, тогда это будет твой метод, вызывемый из меню
+        menuSearchRecipes(userInput, testBook);
 
     }
 
-    public static Recipe testRecipe(Scanner userInput) {
+    //todo: Рецепт протестировала? Можно закомментить
+    /* public static Recipe testRecipe(Scanner userInput) {
         Recipe rec1 = new Recipe();
 
         System.out.print("Введи название: ");
@@ -59,37 +60,29 @@ public class Application {
 
             System.out.print("Введи тип количества(штуки,граммы или миллил итры): ");
             item.setType(userInput.next());
-            rec1.addIngridients(item);
+            rec1.addIngridient(item);
         }
         return rec1;
+    } */
+
+    //todo: в этом методе нужно поискать в Книге и вывести на экран результаты
+    public static void doActualSearch(String text, Cookbook book) {
+        //the code goes here
+
+        System.out.println();
     }
 
-    public static String menuSearchRecipes(Scanner userInput, Cookbook book) {
-        if (book.hasRecipes() == false) {
-            System.out.println("В книге пока нет рецептов");
-        } else {
-            System.out.println("Введи слово для поиска: ");
-            String substring = userInput.next();
-            book.searchRecipes(substring);
-            if (book.checkResult() == false) {
-                System.out.println("Такого рецепта тютю");
-            } else {
-                System.out.println(book.getRec());
-            }
+    public static void menuSearchRecipes(Scanner userInput, Cookbook book) {
+        System.out.println("Введи слово для поиска: ");
+        String substring = userInput.next();
 
-        }
-
+        doActualSearch(substring, book);
     }
 
-    public boolean checkResult() {
-        if (searchRecipes().length == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    public static Cookbook makeTestBook() {
 
-    public static Cookbook makeTestBook(Cookbook book) {
+        //todo: есть ли смысл создавать книгу за пределами этого метода? Наверное, нет, вот вернуть её отсюда нужно
+        Cookbook book = new Cookbook();
 
         Recipe rec = new Recipe();
         rec.setName("pyureshka s kotletkoi");
@@ -100,13 +93,13 @@ public class Application {
                 new Ingridient("kotletka", 2, "sht"),
         };
 
-        int idx = 0;
         for (Ingridient item : ings) {
-            rec.addIngridients(ings[idx]);
-            idx++;
+            rec.addIngridient(item);
         }
 
         book.addRecipe(rec);
+
+        //todo: add more recipes
 
         return book;
     }
