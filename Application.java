@@ -138,7 +138,7 @@ public class Application {
      * getAllRecs(book);
      * break;
      * case 3:
-     * searchRecipe(userInput, book);
+     * menuSearchRecipes(userInput, book);
      * break;
      * default:
      * System.out.println("Введено неверное значение меню.\n");
