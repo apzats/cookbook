@@ -6,11 +6,11 @@ public class Ingridient {
   private int quantityIngridient;
   private String quantityType; 
 
-  public Ingridient(String ingridientText, int quantityIngridient, String quantityType) {
+  /*public Ingridient(String ingridientText, int quantityIngridient, String quantityType) {
     this.ingridientText = ingridientText;
     this.quantityIngridient = quantityIngridient;
     this.quantityType = quantityType;
-    }
+    }*/
   
   
   public void setIngridientText(String ingridientText) {
@@ -27,9 +27,9 @@ public class Ingridient {
 
   public String toString() {
 
-      //todo: тут только один элемент, не нужно никакого total, достаточно вернуть все поля всклейку.
+      ////todo: тут только один элемент, не нужно никакого total, достаточно вернуть все поля всклейку.
       String total = "";
-      total = ("Ингредиент: " + this.ingridientText + " Сколька: " + this.quantityIngridient + " " + this.quantityType + total);
+      total = (this.ingridientText + " " + this.quantityIngridient + " " + this.quantityType+ "\n");
       return total;
   }
 

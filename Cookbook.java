@@ -14,10 +14,12 @@ public class Cookbook {
   public String getTextRecipes() {
     int i = 1;
     String outcome = "";
-    //todo: Если рецептов в Книге нет, нужно сразу вернуть строчку "В книге нет рецептов"
     for (Recipe item : this.Recipes) {
       outcome = outcome + "Рецепт #" + i + " " + item + "\n";
       i++;
+    }
+    if (outcome == "") {
+      System.out.println("В книге пока еще нет рецептов");
     }
     return outcome;
   }

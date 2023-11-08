@@ -24,7 +24,7 @@ public class Recipe {
   }
 
   public void setName(String name) {
-    this.name = name;
+    this.name = name; //vfdcl
   }
 
   public boolean hasIngridients() {
@@ -43,16 +43,6 @@ public class Recipe {
   public boolean containsString(String text) {
     // for (String stringSearch : this.ingridients) {
     Boolean result = (toString().toLowerCase().contains(text.toLowerCase()));
-    return result;
-  }
-
-  // todo: Нужен ли этот метод вообще для чего-то? Поиском не нашёл его
-  // использования
-  public String getRecipeItem() {
-    String result = "";
-    for (Ingridient item : this.Ingridients) {
-      result = item + " " + result;
-    }
     return result;
   }
 
