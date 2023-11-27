@@ -1,16 +1,21 @@
-package cookbook_application;
-
 import java.lang.reflect.Array;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonGetter;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Recipe {
 
-  Ingridient[] Ingridients;
+  private Ingridient[] Ingridients;
+  /*@JsonGetter("Ingridients")
+    public Ingridient[] Ingridients(){return this.Ingridients;}*/
 
   public Recipe() {
     Ingridients = new Ingridient[0];
   }
 
   private String name;
+  /*@JsonGetter("name")
+      public String name(){return this.name;}*/
 
   @Override
   public String toString() {
@@ -24,7 +29,7 @@ public class Recipe {
   }
 
   public void setName(String name) {
-    this.name = name; //vfdcl
+    this.name = name; 
   }
 
   public boolean hasIngridients() {
