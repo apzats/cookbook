@@ -2,8 +2,9 @@ public class Ingridient {
 
   private String ingridientText;
   private int quantityIngridient;
-  private String quantityType; 
+  private String quantityType;
 
+  
   public Ingridient(){};
   public Ingridient(String ingridientText, int quantityIngridient, String quantityType) {
     this.ingridientText = ingridientText;

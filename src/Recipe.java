@@ -1,10 +1,12 @@
 import java.lang.reflect.Array;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Recipe {
 
+  @JacksonXmlElementWrapper(useWrapping = false)
   private Ingridient[] Ingridients;
   /*@JsonGetter("Ingridients")
     public Ingridient[] Ingridients(){return this.Ingridients;}*/

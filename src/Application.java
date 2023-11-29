@@ -11,9 +11,10 @@ public class Application {
         // Writer writer = new Writer(createFile);
         ObjectMap objectMap = new ObjectMap();
         Ingridient ingridient = new Ingridient();
+        Xml xml = new Xml();
         
         //Cookbook testBook = makeTestBook();
-        // System.out.println(recipeUnit.toString());
+        // System.out.println(recipeUnit.toString());\\\
 
         int choice = 0;
         String input = "";
@@ -24,7 +25,9 @@ public class Application {
             System.out.println("3. Для поиска рецепта введите 3");
             System.out.println("4. Для записи рецепта в файл нажмите 4");
             System.out.println("5. Для загрузки рецепта из файла нажмите 5");
-            System.out.println("6. Для выхода из приложения введите 6");
+            System.out.println("6. Для (де)сериализации рецепта в .json нажмите 6");
+            System.out.println("7. Для (де)сериализации рецепта в .xml нажмите 7");
+            System.out.println("8. Для выхода из приложения введите 8");
             input = userInput.next();
 
             try {
@@ -45,14 +48,22 @@ public class Application {
                     break;
                 case 4:
                     //objectMap.serialize(ingridient);
-                    testFileWrite(userInput);
+                    testFileWrite(userInput, book, objectMap);
                     break;
                 case 5:
                     //objectMap.deserialize();
-                    testFileRead(userInput);
+                    testFileRead(userInput,book,objectMap);
                     // Writer.reader();
-                    break;    
+                    break; 
                 case 6:
+                    System.out.println(testFileSerialize(userInput,book,objectMap));
+                    //testFileDeserialize(userInput,book,objectMap);
+                    break; 
+                case 7:
+                    // System.out.println(testFileSerializeXml(userInput,book,xml));
+                    testFileXmlWrite(userInput,book,xml);
+                    break;       
+                case 8:
                     System.out.println("Адьёз липидос!");    
                     System.exit(0);        
                 default:
@@ -63,17 +74,18 @@ public class Application {
         userInput.close();
     }
 
-    public static void testFileWrite(Scanner userInput) {
-        System.out.println("Введи название файла:");
+    public static void testFileWrite(Scanner userInput, Cookbook book, ObjectMap objectMap) { 
+        System.out.println("Введи название файла c .txt:");
         String title = userInput.next();
         CreateFile createFile = new CreateFile();
         File newFile = createFile.createFile(title);
         Writer writer = new Writer(newFile);
-        Cookbook newBook = makeTestBook();
-        writer.write(newBook.getTextRecipes());
+        String fileJson = testFileSerialize(userInput, book, objectMap);
+        writer.write(fileJson);
+
     }
 
-     public static void testFileRead(Scanner userInput) {
+    public static void testFileRead(Scanner userInput, Cookbook book, ObjectMap objectMap) {
         System.out.println("Введи название файла:");
         String title = userInput.next();
         CreateFile fileCreator = new CreateFile();
@@ -81,6 +93,34 @@ public class Application {
         Writer writer = new Writer(existingFile);
         String result = writer.read();
         System.out.println(result);
+    }
+
+    public static void testFileXmlWrite(Scanner userInput, Cookbook book, Xml xml) { 
+        System.out.println("Введи название файла c .xml:");
+        String title = userInput.next();
+        CreateFile createFile = new CreateFile();
+        File newFile = createFile.createFile(title);
+        Writer writer = new Writer(newFile);
+        String fileXML = testFileSerializeXml(userInput, book, xml);
+        writer.write(fileXML);
+
+        
+    }
+
+    public static String testFileSerialize(Scanner userInput, Cookbook book, ObjectMap objectMap) {
+        testRecipe(userInput,book);
+        return objectMap.serialize(book);
+    }
+
+    public static void testFileDeserialize(Scanner userInput, Cookbook book, ObjectMap objectMap) {
+         testRecipe(userInput,book);
+         String resultJson = objectMap.serialize(book);
+         objectMap.deserialize(resultJson);
+    }
+
+    public static String testFileSerializeXml(Scanner userInput, Cookbook book, Xml xml) { 
+        testRecipe(userInput,book);
+        return xml.serializeToXML(book);
     }
 
 

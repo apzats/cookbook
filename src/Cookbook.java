@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.Scanner;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
@@ -8,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Cookbook {
 
-
+  @JacksonXmlElementWrapper(useWrapping = false)
   private Recipe[] Recipes;
  
   public Cookbook() {

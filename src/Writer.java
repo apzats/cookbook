@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+
 public class Writer {
     private File fileFileld;
 
@@ -24,23 +25,21 @@ public class Writer {
         }
     }
 
-    public String read() {
-        char[] buf = new char[256];
-        try (FileReader reader = new FileReader(fileFileld)) {
-            int c;
-            while ((c = reader.read(buf)) > 0) {
+    public String read() {   
+        char[] charArray;
+        String readedString = "";
 
-                if (c < 256) {
-                    buf = Arrays.copyOf(buf, c);
-                }
-                System.out.print(buf);
-            }
-
+        try(FileReader reader = new FileReader(fileFileld))
+        {
+            charArray = new char[(int)fileFileld.length()]; 
+            reader.read(charArray);
+ 
+            readedString = new String(charArray);
+            reader.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return (new String(buf));
+        return (readedString);
 
     }
-
 }
