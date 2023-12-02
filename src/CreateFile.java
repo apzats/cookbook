@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class CreateFile {
      private String path = "c:\\GitHubProjects\\java\\learning\\Outputs\\";

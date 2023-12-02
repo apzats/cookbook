@@ -8,8 +8,7 @@ import java.nio.file.Paths;
 public class Writer {
     private File fileFileld;
 
-    // private String fileName;
-    public Writer(File file) {
+       public Writer(File file) {
         this.fileFileld = file;
     }
 
@@ -42,4 +41,6 @@ public class Writer {
         return (readedString);
 
     }
+
+    
 }

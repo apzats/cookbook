@@ -1,5 +1,7 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.apache.commons.io.FilenameUtils;
 
 public class Xml {
     public String xml = "";
@@ -33,6 +35,23 @@ public class Xml {
         }
         return xml;
         
+    }
+
+    public static void deserializeXml(String resultXml) {
+        XmlMapper xmlMapper = new XmlMapper();
+        Cookbook book = new Cookbook();
+        // String xmlString = "<Cookbook><Recipes><Ingridients><ingridientText>kartoshka</ingridientText><quantityIngridient>3</quantityIngridient><quantityType>sht</quantityType></Ingridients><Ingridients><ingridientText>moloko</ingridientText><quantityIngridient>100</quantityIngridient><quantityType>ml</quantityType></Ingridients><Ingridients><ingridientText>kotletka</ingridientText><quantityIngridient>2</quantityIngridient><quantityType>sht</quantityType></Ingridients><name>pyureshka s kotletkoi</name></Recipes><Recipes><Ingridients><ingridientText>kartoshka</ingridientText><quantityIngridient>3</quantityIngridient><quantityType>sht</quantityType></Ingridients><Ingridients><ingridientText>myasko</ingridientText><quantityIngridient>100</quantityIngridient><quantityType>gr</quantityType></Ingridients><Ingridients><ingridientText>svekla</ingridientText><quantityIngridient>2</quantityIngridient><quantityType>sht</quantityType></Ingridients><name>borschik</name></Recipes><Recipes><Ingridients><ingridientText>uryuk</ingridientText><quantityIngridient>3</quantityIngridient><quantityType>gr</quantityType></Ingridients><Ingridients><ingridientText>izyum</ingridientText><quantityIngridient>100</quantityIngridient><quantityType>gr</quantityType></Ingridients><Ingridients><ingridientText>chernoscliva</ingridientText><quantityIngridient>2</quantityIngridient><quantityType>gr</quantityType></Ingridients><name>kompotik</name></Recipes></Cookbook>";
+        try {
+        Cookbook newBook = xmlMapper.readValue(resultXml, Cookbook.class);
+        System.out.println("Рецепт: " + newBook.getTextRecipes());
+        }catch (JsonProcessingException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public String getExtensionByApacheCommonLib(String filename) {
+        return FilenameUtils.getExtension(filename);
     }
     
 }

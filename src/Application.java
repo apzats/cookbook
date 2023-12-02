@@ -3,6 +3,7 @@ import java.io.File;
 import java.lang.String;
 
 public class Application {
+
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
         // Recipe recipeUnit = testRecipe(userInput);
@@ -12,14 +13,15 @@ public class Application {
         ObjectMap objectMap = new ObjectMap();
         Ingridient ingridient = new Ingridient();
         Xml xml = new Xml();
-        
+       
+
         //Cookbook testBook = makeTestBook();
         // System.out.println(recipeUnit.toString());\\\
 
         int choice = 0;
-        String input = "";
+        String inputVar = "";
 
-        while (!"4".equals(input)) {
+        while (!"4".equals(inputVar)) {
             System.out.println("1. Для добавления рецепта введите 1");
             System.out.println("2. Для просмотра всех рецептов введите 2");
             System.out.println("3. Для поиска рецепта введите 3");
@@ -28,10 +30,10 @@ public class Application {
             System.out.println("6. Для (де)сериализации рецепта в .json нажмите 6");
             System.out.println("7. Для (де)сериализации рецепта в .xml нажмите 7");
             System.out.println("8. Для выхода из приложения введите 8");
-            input = userInput.next();
+            inputVar = userInput.next();
 
             try {
-                choice = Integer.parseInt(input);
+                choice = Integer.parseInt(inputVar);
             } catch (NumberFormatException e) {
                 System.out.println("Неверный ввод");
             }
@@ -48,11 +50,11 @@ public class Application {
                     break;
                 case 4:
                     //objectMap.serialize(ingridient);
-                    testFileWrite(userInput, book, objectMap);
+                    // testFileWrite(inputText,userInput, book, objectMap);
                     break;
                 case 5:
                     //objectMap.deserialize();
-                    testFileRead(userInput,book,objectMap);
+                    // testFileRead(inputText,book,objectMap);
                     // Writer.reader();
                     break; 
                 case 6:
@@ -61,7 +63,12 @@ public class Application {
                     break; 
                 case 7:
                     // System.out.println(testFileSerializeXml(userInput,book,xml));
-                    testFileXmlWrite(userInput,book,xml);
+                    // testFileXmlWrite(userInput,book,xml);
+                    // testFileDeserializeXml(userInput,book,xml);
+                     //testDeserializeFromFileXml(userInput,book,xml);
+                    String inputText = input(userInput);
+                    splitter(inputText,userInput,book,objectMap,xml);
+
                     break;       
                 case 8:
                     System.out.println("Адьёз липидос!");    
@@ -71,39 +78,55 @@ public class Application {
             }
         }
 
-        userInput.close();
+        userInput.close(); 
     }
 
-    public static void testFileWrite(Scanner userInput, Cookbook book, ObjectMap objectMap) { 
-        System.out.println("Введи название файла c .txt:");
-        String title = userInput.next();
+    public static String input(Scanner userInput) {
+        System.out.println("Введи название файла c .json или с .xml:");
+        String inputText = userInput.next();
+        return inputText;
+    }
+
+    public static void splitter(String inputText, Scanner userInput, Cookbook book, ObjectMap objectMap, Xml xml) {
+        String substring = inputText.substring(inputText.indexOf(".")+ 1,inputText.length());
+        if (substring.equals("json")) {
+            testFileWrite(inputText, userInput, book, objectMap);
+        } else if(substring.equals("xml")){
+            testFileXmlWrite(inputText, userInput, book, xml);
+        } else {
+            System.out.println("Неправильно указано расширение файла.");
+        }
+    }
+
+    public static void testFileWrite(String inputText, Scanner userInput, Cookbook book, ObjectMap objectMap) { 
         CreateFile createFile = new CreateFile();
-        File newFile = createFile.createFile(title);
+        File newFile = createFile.createFile(inputText);
         Writer writer = new Writer(newFile);
         String fileJson = testFileSerialize(userInput, book, objectMap);
         writer.write(fileJson);
 
     }
 
-    public static void testFileRead(Scanner userInput, Cookbook book, ObjectMap objectMap) {
-        System.out.println("Введи название файла:");
-        String title = userInput.next();
+    public static void testFileRead(String inputText, Cookbook book, ObjectMap objectMap) {
         CreateFile fileCreator = new CreateFile();
-        File existingFile = fileCreator.createFile(title);
+        File existingFile = fileCreator.createFile(inputText);
         Writer writer = new Writer(existingFile);
         String result = writer.read();
         System.out.println(result);
     }
 
-    public static void testFileXmlWrite(Scanner userInput, Cookbook book, Xml xml) { 
-        System.out.println("Введи название файла c .xml:");
-        String title = userInput.next();
+    public static String testFileXmlWrite(String inputText, Scanner userInput, Cookbook book, Xml xml) { 
         CreateFile createFile = new CreateFile();
-        File newFile = createFile.createFile(title);
+        File newFile = createFile.createFile(inputText);
         Writer writer = new Writer(newFile);
         String fileXML = testFileSerializeXml(userInput, book, xml);
         writer.write(fileXML);
+        return fileXML;
+    }
 
+    public static void testDeserializeFromFileXml(String inputText, Scanner userInput, Cookbook book, Xml xml) {
+        String fileXML = testFileXmlWrite(inputText, userInput, book, xml);
+        xml.deserializeXml(fileXML);
         
     }
 
@@ -121,6 +144,12 @@ public class Application {
     public static String testFileSerializeXml(Scanner userInput, Cookbook book, Xml xml) { 
         testRecipe(userInput,book);
         return xml.serializeToXML(book);
+    }
+
+    public static void testFileDeserializeXml(Scanner userInput, Cookbook book, Xml xml) {
+        testRecipe(userInput,book);
+        String resultXml = xml.serializeToXML(book);
+        xml.deserializeXml(resultXml);
     }
 
 
