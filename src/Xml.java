@@ -37,9 +37,10 @@ public class Xml {
         
     }
 
+    //todo: Лучше сделать, чтобы метод возвращал распакованный объект, а не выводил сразу на экран - т.к сценарии использования этого объекта могут быть разными    
     public static void deserializeXml(String resultXml) {
         XmlMapper xmlMapper = new XmlMapper();
-        Cookbook book = new Cookbook();
+        Cookbook book = new Cookbook(); //todo: не используется
         // String xmlString = "<Cookbook><Recipes><Ingridients><ingridientText>kartoshka</ingridientText><quantityIngridient>3</quantityIngridient><quantityType>sht</quantityType></Ingridients><Ingridients><ingridientText>moloko</ingridientText><quantityIngridient>100</quantityIngridient><quantityType>ml</quantityType></Ingridients><Ingridients><ingridientText>kotletka</ingridientText><quantityIngridient>2</quantityIngridient><quantityType>sht</quantityType></Ingridients><name>pyureshka s kotletkoi</name></Recipes><Recipes><Ingridients><ingridientText>kartoshka</ingridientText><quantityIngridient>3</quantityIngridient><quantityType>sht</quantityType></Ingridients><Ingridients><ingridientText>myasko</ingridientText><quantityIngridient>100</quantityIngridient><quantityType>gr</quantityType></Ingridients><Ingridients><ingridientText>svekla</ingridientText><quantityIngridient>2</quantityIngridient><quantityType>sht</quantityType></Ingridients><name>borschik</name></Recipes><Recipes><Ingridients><ingridientText>uryuk</ingridientText><quantityIngridient>3</quantityIngridient><quantityType>gr</quantityType></Ingridients><Ingridients><ingridientText>izyum</ingridientText><quantityIngridient>100</quantityIngridient><quantityType>gr</quantityType></Ingridients><Ingridients><ingridientText>chernoscliva</ingridientText><quantityIngridient>2</quantityIngridient><quantityType>gr</quantityType></Ingridients><name>kompotik</name></Recipes></Cookbook>";
         try {
         Cookbook newBook = xmlMapper.readValue(resultXml, Cookbook.class);
@@ -50,6 +51,7 @@ public class Xml {
 
     }
 
+    //todo: неиспользуемый артефакт
     public String getExtensionByApacheCommonLib(String filename) {
         return FilenameUtils.getExtension(filename);
     }

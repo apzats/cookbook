@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+//todo: возможно, класс лучше переименовать во что-то типа FileIO - так как он не только пишет, но и читает, и именно в файл
 public class Writer {
     private File fileFileld;
 

@@ -81,12 +81,14 @@ public class Application {
         userInput.close(); 
     }
 
+    //todo: этот метод очень маленький и по сути не несёт особой смысловой нагрузки
     public static String input(Scanner userInput) {
         System.out.println("Введи название файла c .json или с .xml:");
         String inputText = userInput.next();
         return inputText;
     }
 
+    //А вот код по получению расширения(строку) из строки можно вынести отдельно, т.к. сложную логику лучше скрыть за понятным именем типа getFilenameExtension
     public static void splitter(String inputText, Scanner userInput, Cookbook book, ObjectMap objectMap, Xml xml) {
         String substring = inputText.substring(inputText.indexOf(".")+ 1,inputText.length());
         if (substring.equals("json")) {
@@ -98,6 +100,7 @@ public class Application {
         }
     }
 
+    //todo: здесь и далее, обрати внимание на количество параметров, которое нужно для работы каждого метода и дублирование логики обработки
     public static void testFileWrite(String inputText, Scanner userInput, Cookbook book, ObjectMap objectMap) { 
         CreateFile createFile = new CreateFile();
         File newFile = createFile.createFile(inputText);

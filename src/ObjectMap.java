@@ -39,9 +39,10 @@ public class ObjectMap {
     }
 
 
+    //todo: Лучше сделать, чтобы метод возвращал распакованный объект, а не выводил сразу на экран - т.к сценарии использования этого объекта могут быть разными    
     public static void deserialize(String resultJson) {
         ObjectMapper objectMapper = new ObjectMapper();
-        Cookbook book = new Cookbook();
+        Cookbook book = new Cookbook(); //todo: не используется
         // String jsonString = "{\"Recipes\":[{\"Ingridients\":[{\"ingridientText\":\"kartoshka\",\"quantityIngridient\":3,\"quantityType\":\"sht\"},{\"ingridientText\":\"moloko\",\"quantityIngridient\":100,\"quantityType\":\"ml\"},{\"ingridientText\":\"kotletka\",\"quantityIngridient\":2,\"quantityType\":\"sht\"}],\"name\":\"pyureshka s kotletkoi\"}]}";
         try {
         Cookbook newBook = objectMapper.readValue(resultJson, Cookbook.class);
