@@ -1,5 +1,3 @@
-package cookbook_application;
-
 import java.lang.reflect.Array;
 import java.util.Scanner;
 

@@ -1,15 +1,11 @@
-package cookbook_application;
-
 import java.util.Scanner;
+import java.io.File;
 import java.lang.String;
 
 public class Application {
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
         // Recipe recipeUnit = testRecipe(userInput);
-<<<<<<< Updated upstream:Application.java
-         Cookbook book = new Cookbook();
-=======
         Cookbook book = new Cookbook();
         // CreateFile createFile = new CreateFile();
         // Writer writer = new Writer(createFile);
@@ -20,8 +16,6 @@ public class Application {
         //Serializer jsonserializer = new JsonSerializer();
         SerializeFactory serializeFactory = new SerializeFactory();
         FileIO fileIO = new FileIO();
-        
->>>>>>> Stashed changes:src/Application.java
         //Cookbook testBook = makeTestBook();
         // System.out.println(recipeUnit.toString());
 
@@ -52,8 +46,6 @@ public class Application {
                     menuSearchRecipes(userInput, book);
                     break;
                 case 4:
-<<<<<<< Updated upstream:Application.java
-=======
                     //objectMap.serialize(ingridient);
                     //testFileWrite(inputText,userInput, book, objectMap);
                     break;
@@ -82,7 +74,6 @@ public class Application {
                 
                     break;       
                 case 8:
->>>>>>> Stashed changes:src/Application.java
                     System.out.println("Адьёз липидос!");    
                     System.exit(0);    
                 default:
@@ -93,10 +84,6 @@ public class Application {
         userInput.close();
     }
 
-<<<<<<< Updated upstream:Application.java
-
-
-=======
     /*public static void getSubstring(Scanner userInput, Cookbook book, ObjectMap objectMap, Xml xml) {
         System.out.println("Введи название файла c .json или с .xml:");
         String inputText = userInput.next();
@@ -173,7 +160,6 @@ public class Application {
         String resultXml = xml.serializeToXML(book);
         xml.deserializeXml(resultXml);
     }
->>>>>>> Stashed changes:src/Application.java
 
     // todo: Рецепт протестировала? Можно закомментить
 

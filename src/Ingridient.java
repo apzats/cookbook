@@ -1,5 +1,3 @@
-package cookbook_application;
-
 public class Ingridient {
 
   private String ingridientText;

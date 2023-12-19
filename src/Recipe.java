@@ -1,5 +1,3 @@
-package cookbook_application;
-
 import java.lang.reflect.Array;
 
 public class Recipe {
