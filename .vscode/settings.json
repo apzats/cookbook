@@ -1,0 +1,19 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\GitHubProjects\\lib\\jackson-annotations-2.13.2.jar",
+        "c:\\GitHubProjects\\lib\\jackson-core-2.13.2.jar",
+        "c:\\GitHubProjects\\lib\\jackson-databind-2.13.2.2.jar",
+        "c:\\GitHubProjects\\lib\\jackson-databind-2.15.0-rc2.jar",
+        "c:\\GitHubProjects\\lib\\jackson-dataformat-xml-2.13.2.jar",
+        "c:\\GitHubProjects\\lib\\jackson-dataformat-yaml-2.13.2.jar",
+        "c:\\GitHubProjects\\lib\\snakeyaml-1.30.jar",
+        "c:\\GitHubProjects\\lib\\stax2-api-4.2.1.jar",
+        "c:\\GitHubProjects\\lib\\woodstox-core-6.2.8.jar",
+        "c:\\GitHubProjects\\lib\\apache_commons_io\\commons-io-2.15.1.jar",
+        "c:\\GitHubProjects\\lib\\apache_commons_io\\commons-io-2.15.1-javadoc.jar",
+        "c:\\GitHubProjects\\lib\\apache_commons_io\\commons-io-2.15.1-sources.jar",
+        "c:\\GitHubProjects\\lib\\apache_commons_io\\commons-io-2.15.1-tests.jar",
+        "c:\\GitHubProjects\\lib\\apache_commons_io\\commons-io-2.15.1-test-sources.jar"
+    ]
+}
