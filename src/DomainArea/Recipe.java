@@ -1,4 +1,7 @@
+package DomainArea;
+
 import java.lang.reflect.Array;
+import Utils.MyArrays;
 
 public class Recipe {
 
@@ -35,7 +38,7 @@ public class Recipe {
   }
 
   public void addIngridient(Ingridient item) {
-    this.Ingridients = Utils.append(this.Ingridients, item);
+    this.Ingridients = MyArrays.append(this.Ingridients, item);
   }
 
   public boolean containsString(String text) {

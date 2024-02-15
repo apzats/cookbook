@@ -1,9 +1,12 @@
+package Utils;
 import java.io.*;
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.Scanner;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+// import org.apache.commons.io.FilenameUtils;
+
+// import java.nio.file.Files;
+// import java.nio.file.Path;
+// import java.nio.file.Paths;
 
 public class FileIO {
     private File fileFileld;
@@ -14,22 +17,25 @@ public class FileIO {
         this.fileFileld = file;
     }
     Scanner userInput = new Scanner(System.in);
-    Application application = new Application();
 
-    public void createNamedFile(Cookbook book, ObjectMap objectMap) {
+    public void createNamedFile() {
         System.out.println("Введи название файла c .json или с .xml:");
         fileName = userInput.next();
         CreateFile createFile = new CreateFile();
         File newFile = createFile.createFile(fileName);
         FileIO writer = new FileIO(newFile);
-        // String fileJson = application.testFileSerialize(userInput, book, objectMap);
-        // writer.write(fileJson);
+
+        //todo: созданы File и FileIO, может, стоит их сохранить в какие-то поля?
     }
     
     public String getExtension(){
         String extension = getFilenameExtension(fileName);
         return extension;
     }
+
+    // public String getExtensionByApacheCommonLib(String filename) {
+    //     return FilenameUtils.getExtension(filename);
+    // }
 
     public static String getFilenameExtension(String inputText){
         String substring = inputText.substring(inputText.indexOf(".")+ 1,inputText.length());

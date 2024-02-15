@@ -1,9 +1,8 @@
-import java.util.ArrayList;
+package Utils;
+
 import java.util.Arrays;
 
-
-
-public class Utils {
+public class MyArrays {
 
     public static <T> T[] append(T[] origArr, T newItem){
         int n = origArr.length;
@@ -11,7 +10,4 @@ public class Utils {
         newArr[n] = newItem;
         return newArr;
     }
-   
-   
-  
-} 
+}

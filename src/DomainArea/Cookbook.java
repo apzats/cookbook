@@ -1,5 +1,7 @@
+package DomainArea;
+
 import java.lang.reflect.Array;
-import java.util.Scanner;
+import Utils.MyArrays;
 
 public class Cookbook {
 
@@ -27,7 +29,7 @@ public class Cookbook {
   }
 
   public void addRecipe(Recipe newItem) {
-    this.Recipes = Utils.<Recipe>append(this.Recipes, newItem);
+    this.Recipes = MyArrays.<Recipe>append(this.Recipes, newItem);
   }
 
   public boolean hasRecipes() {
