@@ -1,43 +1,26 @@
 package Utils;
 import java.io.*;
-// import java.util.Arrays;
-import java.util.Scanner;
-// import org.apache.commons.io.FilenameUtils;
-
-// import java.nio.file.Files;
-// import java.nio.file.Path;
-// import java.nio.file.Paths;
 
 public class FileIO {
     private File fileFileld;
-    public String fileName = "";
+    public String fileName;
 
     public FileIO(){};
-    public FileIO(File file) {
-        this.fileFileld = file;
-    }
-    Scanner userInput = new Scanner(System.in);
-
-    public void createNamedFile() {
-        System.out.println("Введи название файла c .json или с .xml:");
-        fileName = userInput.next();
+    public FileIO(String fileName) { 
         CreateFile createFile = new CreateFile();
-        File newFile = createFile.createFile(fileName);
-        FileIO writer = new FileIO(newFile);
-
-        //todo: созданы File и FileIO, может, стоит их сохранить в какие-то поля?
+        File newFile = createFile.createFile(fileName); 
+        this.fileFileld = newFile;
+        this.fileName = "";
     }
     
-    public String getExtension(){
-        String extension = getFilenameExtension(fileName);
-        return extension;
-    }
 
-    // public String getExtensionByApacheCommonLib(String filename) {
-    //     return FilenameUtils.getExtension(filename);
+    // public String getExtension(){
+    //     String extension = getFilenameExtension(fileName);
+    //     return extension;
     // }
 
-    public static String getFilenameExtension(String inputText){
+
+    public String getExtension(String inputText){
         String substring = inputText.substring(inputText.indexOf(".")+ 1,inputText.length());
         return substring;
     }

@@ -6,7 +6,7 @@ import DomainArea.Cookbook;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-//todo: аннотации пропали при переезде?
+
 public class ObjectMap {
     public String json = "";
 

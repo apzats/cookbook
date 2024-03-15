@@ -1,5 +1,8 @@
 package DomainArea;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Ingridient {
 
   private String ingridientText;
@@ -27,10 +30,7 @@ public class Ingridient {
   }
 
   public String toString() {
-    //todo: как можно упростить одной строчкой вместо 3-х?
-    String total = "";
-    total = (this.ingridientText + " " + this.quantityIngridient + " " + this.quantityType + "\n");
-    return total;
+    return  (this.ingridientText + " " + this.quantityIngridient + " " + this.quantityType + "\n");
   }
 
 }

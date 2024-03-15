@@ -2,6 +2,7 @@ package Serialization.Serializers;
 
 import Serialization.Abstract.Serializer;
 import Serialization.Libraries.Xml;
+
 import DomainArea.Cookbook;
 
 public class XmlSerial implements Serializer{
@@ -15,6 +16,7 @@ public class XmlSerial implements Serializer{
         String result = this.adaptee.serializeToXML(book);
         return result;
     }
+    
     public Cookbook deserialize(String text){
         Cookbook result = this.adaptee.deserializeXml(text);
         return result;

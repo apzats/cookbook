@@ -1,11 +1,16 @@
 package DomainArea;
 
 import java.lang.reflect.Array;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+
 import Utils.MyArrays;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Recipe {
-
-  Ingridient[] Ingridients;
+  @JacksonXmlElementWrapper(useWrapping = false)
+  private Ingridient[] Ingridients;
 
   public Recipe() {
     Ingridients = new Ingridient[0];
@@ -25,7 +30,7 @@ public class Recipe {
   }
 
   public void setName(String name) {
-    this.name = name; //vfdcl
+    this.name = name; 
   }
 
   public boolean hasIngridients() {

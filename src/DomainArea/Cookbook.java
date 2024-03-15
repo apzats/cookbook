@@ -1,16 +1,23 @@
 package DomainArea;
 
 import java.lang.reflect.Array;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+
 import Utils.MyArrays;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Cookbook {
-
+  @JacksonXmlElementWrapper(useWrapping = false)
   private Recipe[] Recipes;
 
   public Cookbook() {
     Recipes = new Recipe[0];
   }
 
+  @JsonIgnore
   public String getTextRecipes() {
     int i = 1;
     String outcome = "";
@@ -24,6 +31,7 @@ public class Cookbook {
     return outcome;
   }
 
+  @JsonIgnore
   public Recipe[] getArrRecipe() {
     return this.Recipes;
   }

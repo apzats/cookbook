@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import DomainArea.*;
+import Playground.FileOperations;
+import Playground.Mocker;
 import Playground.SerializeTest;
 import Serialization.SerializeFactory;
 import Serialization.Abstract.Serializer;
@@ -13,17 +15,19 @@ import java.lang.String;
 
 public class Application {
     public static void main(String[] args) {
-        Scanner userInput = new Scanner(System.in);
+        Scanner userInput = new Scanner(System.in); 
+                                                    
         Cookbook book = new Cookbook();
 
         int choice = 0;
         String input = "";
 
-        while (!"4".equals(input)) {
+        while (!"5".equals(input)) {
             System.out.println("1. Для добавления рецепта введите 1");
             System.out.println("2. Для просмотра всех рецептов введите 2");
             System.out.println("3. Для поиска рецепта введите 3");
             System.out.println("4. Для выхода из приложения введите 4");
+            System.out.println("5. Для выхода из приложения введите 5");
             input = userInput.next();
 
             try {
@@ -33,7 +37,7 @@ public class Application {
             }
 
             switch (choice) {
-                case 1:                
+                case 1:
                     Recipe rec = makeRecipe(userInput);
                     book.addRecipe(rec);
                     break;
@@ -44,26 +48,27 @@ public class Application {
                     menuSearchRecipes(userInput, book);
                     break;
                 case 4:
-                    //exit
+                    // exit
                     break;
                 case 5:
                     // System.out.println(testFileSerializeXml(userInput,book,xml));
-                    //testFileXmlWrite(userInput,book,xml);
+                    // Playground.FileOperations.testXmlFileWrite(input2);
                     // testFileDeserializeXml(userInput,book,xml);
-                    //testDeserializeFromFileXml(userInput,book,xml);
+                    // testDeserializeFromFileXml(userInput,book,xml);
                     // String inputText = input(userInput);
-                    //splitter(userInput,book,objectMap,xml);
-                    //xmlserializer.serialize(book);
-                    //jsonserializer.serialize(book);
-                    //serializeFactory.chooseSerializer(null);
-                    //getSubstring(userInput, book, objectMap, xml);
-                    splitter(userInput, book);
+                    // splitter(userInput,book,objectMap,xml);
+                    // xmlserializer.serialize(book);
+                    // jsonserializer.serialize(book);
+                    // serializeFactory.chooseSerializer(null);
+                    // getSubstring(userInput, book, objectMap, xml);
+                    // splitter(userInput, book);
+                    //FileOperations.testSplitterSerial();
+                    //FileOperations.testSplitterDeserial();
 
-                
-                    break;       
+                    break;
                 case 8:
-                    System.out.println("Адьёз липидос!");    
-                    System.exit(0);    
+                    System.out.println("Адьёз липидос!");
+                    System.exit(0);
                 default:
                     System.out.println("Введено неверное значение меню.\n");
             }
@@ -72,16 +77,16 @@ public class Application {
         userInput.close();
     }
 
-    //todo: иногда стоит подумать, что если ты таскаешь кучу параметров по вложенным методам, что-то пошло не так.
-    public static void splitter(Scanner userInput, Cookbook book) {
-        FileIO fileIO = new FileIO();
-        fileIO.createNamedFile();
-        String extension = fileIO.getExtension();
-        Serializer newSerializer = SerializeFactory.chooseSerializer(extension);
-        book.addRecipe(makeRecipe(userInput));
-        String serializedString = newSerializer.serialize(book);
-        fileIO.write(serializedString);
-    }
+
+    // public static void splitter(Scanner userInput, Cookbook book) {
+    //     FileIO fileIO = new FileIO();
+    //     fileIO.createNamedFile();
+    //     String extension = fileIO.getExtension();
+    //     Serializer newSerializer = SerializeFactory.chooseSerializer(extension);
+    //     book.addRecipe(makeRecipe(userInput));
+    //     String serializedString = newSerializer.serialize(book);
+    //     fileIO.write(serializedString);
+    // }
 
     public static Recipe makeRecipe(Scanner userInput) {
         Recipe rec1 = new Recipe();
@@ -137,8 +142,8 @@ public class Application {
 
         doActualSearch(substring, book);
     }
-    
+
     public static void getAllRecs(Cookbook book) {
-            System.out.println(book.getTextRecipes());
+        System.out.println(book.getTextRecipes());
     }
 }
